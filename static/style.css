@@ -1,0 +1,85 @@
+html {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+body {
+    background-color: #000000; /* Preto */
+    color: #ffa500; /* Laranja */
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+header {
+    background-color: #000000; /* Preto */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #333;
+}
+
+header h1 {
+    color: #ffa500; /* Laranja */
+    font-size: 3em;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #000000; /* Preto */
+    padding: 10px 0;
+}
+
+nav a {
+    color: #ffa500; /* Laranja */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+}
+
+nav a:hover {
+    color: #ff6600; /* Laranja mais escuro */
+}
+
+main {
+    padding: 20px;
+}
+
+button {
+    background-color: #ffa500; /* Laranja */
+    border: none;
+    color: #000000; /* Preto */
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff6600; /* Laranja mais escuro */
+}
+
+footer {
+    background-color: #000000; /* Preto */
+    color: #ffa500; /* Laranja */
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #333;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
