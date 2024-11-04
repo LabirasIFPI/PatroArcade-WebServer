@@ -15,7 +15,8 @@ document
       );
 
       // Envia a requisição para o back-end
-      const response = await fetch(mainUrl + "login/", {
+      // TODO: Substituir o "0" pelo id do cliente (fliperama)
+      const response = await fetch(mainUrl + "login/" + "0", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
