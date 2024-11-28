@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title PatroArcade - Sua plataforma de fliperama
+    link(rel='stylesheet', href='/styles.css')
+  body
+    h1 PatroArcade: Sua plataforma de fliperama
+    section#novidades
+      h2 Novidades
+      ul
+        each news in latestNews
+          li 
+            h3= news.title
+            p= news.content
+    section#pontuacoes
+      h2 Últimas Pontuações
+      ul
+        each entry in leaderboards
+          li #{entry.name}: #{entry.totalScore} pontos
+    section#links-uteis
+      h2 Links Úteis
+      ul
+        li 
+          a(href='/perfil') Perfil
+        li 
+          a(href='/ranking') Ranking
