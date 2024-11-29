@@ -1,5 +1,5 @@
-const express = require("express");
-const pug = require("pug");
+const express = require("express"); // Para criar o servidor
+const pug = require("pug"); // Para renderizar as páginas
 const axios = require("axios"); // Para fazer requisições à API
 
 const app = express();
