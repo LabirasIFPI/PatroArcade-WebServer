@@ -31,3 +31,5 @@ app.listen(port, () => {
   console.clear();
   console.log(`PatroPage Server on port: ${port}`);
 });
+
+module.exports = app;
