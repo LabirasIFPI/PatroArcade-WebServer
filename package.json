@@ -1,18 +1,20 @@
 {
   "dependencies": {
+    "@types/express": "^5.0.0",
     "axios": "^1.7.8",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "pug": "^3.0.3"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node dist/server.js",
     "dev": "nodemon index.js"
   },
   "name": "patroarcadepage",
   "version": "1.0.0",
   "description": "Página do PatroArcade",
   "main": "server.js",
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luisfpatrocinio/patroArcadePage.git"
@@ -28,6 +30,7 @@
   },
   "homepage": "https://github.com/luisfpatrocinio/patroArcadePage#readme",
   "devDependencies": {
+    "@types/node": "^22.10.1",
     "nodemon": "^3.1.7"
   }
 }
