@@ -21,7 +21,7 @@ app.get("/", async (_req, res) => {
     console.log("Carregando a página inicial...");
 
     // Request to the API to get the data
-    const apiURL = "http://localhost:3001";
+    const apiURL = process.env.APIURL || "http://localhost:3001";
     const {
       data: { content: latestNews },
     } = await axios.get(apiURL + "/latestNews");
