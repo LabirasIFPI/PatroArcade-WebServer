@@ -6,6 +6,8 @@ const axios = require("axios"); // Para fazer requisições à API
 
 const app = express();
 const port = process.env.PORT || 3000;
+// Request to the API to get the data
+const apiURL = process.env.APIURL || "http://localhost:3001";
 
 // Static Files
 app.use(express.static("public"));
@@ -19,9 +21,6 @@ app.set("views", "./views");
 app.get("/", async (_req, res) => {
   try {
     console.log("Carregando a página inicial...");
-
-    // Request to the API to get the data
-    const apiURL = process.env.APIURL || "http://localhost:3001";
     const {
       data: { content: latestNews },
     } = await axios.get(apiURL + "/latestNews");
