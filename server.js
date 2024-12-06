@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express"); // Para criar o servidor
 const pug = require("pug"); // Para renderizar as páginas
 const axios = require("axios"); // Para fazer requisições à API
+const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,7 +16,7 @@ console.log("Static Files: OK");
 
 // Pug Setup
 app.set("view engine", "pug");
-app.set("views", "./views");
+app.set("views", path.join(__dirname, "views")); // Correct path configuration
 
 // Home Page Route
 app.get("/", async (_req, res) => {
