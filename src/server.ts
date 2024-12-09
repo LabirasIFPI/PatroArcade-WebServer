@@ -1,4 +1,5 @@
 import { homeRoutes } from "./routes/homeRoutes";
+import { loginRoutes } from "./routes/loginRoutes";
 
 require("dotenv").config();
 
@@ -18,6 +19,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 
 // Home Page Route
 app.use("/", homeRoutes);
+app.use("login/", loginRoutes);
 
 app.listen(port, () => {
   console.clear();
