@@ -19,7 +19,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 
 // Home Page Route
 app.use("/", homeRoutes);
-app.use("login/", loginRoutes);
+app.use("/login", loginRoutes);
 
 app.listen(port, () => {
   console.clear();
