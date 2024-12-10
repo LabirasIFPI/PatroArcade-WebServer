@@ -1,12 +1,34 @@
-doctype html
-html
-  head
-    title PatroArcade - Sua plataforma de fliperama
-    link(rel='stylesheet', href='/public/styles.css')
-  body
-    .mainTitle
-        img(src='/public/assets/patroArcadeLogo.png')
-        h1 PatroArcade: Sua plataforma de fliperama
-    section#loginForm
-      h2 Login
-      h1 Arcade de ID: #{arcadeId}
+extends base.pug
+
+block headExtra 
+    title Login
+
+block content
+    section#login
+        h2 Login no Fliperama ID: #{arcadeId}
+        form(action="/login", method="POST")
+            label(for="username") Usuário
+            input(type="text", name="username", id="username")
+            label(for="password") Senha
+            input(type="password", name="password", id="password")
+            button(type="submit") Entrar
+    section#cadastro
+        h2 Cadastro
+        form(action="/cadastro", method="POST")
+            label(for="username") Usuário
+            input(type="text", name="username", id="username")
+            label(for="password") Senha
+            input(type="password", name="password", id="password")
+            button(type="submit") Cadastrar
+    section#links-uteis
+        h2 Links Úteis
+        ul
+            li 
+                a(href='/perfil') Perfil
+            li 
+                a(href='/ranking') Ranking
+            li 
+                a(href='/') Início
+    //- section#erros
+    //-     if error
+    //-         p= error

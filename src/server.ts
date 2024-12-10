@@ -1,16 +1,14 @@
 import { homeRoutes } from "./routes/homeRoutes";
 import { loginRoutes } from "./routes/loginRoutes";
+import dotenv from "dotenv";
 
-require("dotenv").config();
+dotenv.config();
 
-const express = require("express"); // Para criar o servidor
-const pug = require("pug"); // Para renderizar as páginas
-const axios = require("axios"); // Para fazer requisições à API
+const express = require("express");
 const path = require("path");
 
 const app = express();
-const port = process.env.PORT || 5999;
-const apiURL = process.env.APIURL || "http://localhost:3001";
+const port = process.env.PORT || 6969;
 
 // Pug Setup
 app.set("view engine", "pug");

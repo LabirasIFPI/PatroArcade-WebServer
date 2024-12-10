@@ -1,12 +1,9 @@
-doctype html
-html
-  head
-    title PatroArcade - Sua plataforma de fliperama
-    link(rel='stylesheet', href='/public/styles.css')
-  body
-    .mainTitle
-        img(src='/public/assets/patroArcadeLogo.png')
-        h1 PatroArcade: Sua plataforma de fliperama
+extends base.pug
+
+block headExtra
+    title Página Inicial
+
+block content 
     section#novidades
       h2 Novidades
       ul

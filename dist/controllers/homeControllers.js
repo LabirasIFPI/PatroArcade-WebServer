@@ -14,16 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.homePage = void 0;
 const axios_1 = __importDefault(require("axios"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const apiURL = process.env.APIURL || "http://localhost:3001";
 function homePage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log("Carregando a página inicial...");
+            console.log("API URL:", apiURL);
             const { data: { content: latestNews }, } = yield axios_1.default.get(apiURL + "/latestNews");
             const { data: { content: leaderboards }, } = yield axios_1.default.get(apiURL + "/leaderboard");
             res.render("home", { latestNews, leaderboards });
         }
         catch (_err) {
+            // if (_err instanceof Error) console.error(_err.message);
             console.error(_err);
             res.status(500).send("Erro ao carregar a página inicial.");
         }

@@ -1,15 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const homeRoutes_1 = require("./routes/homeRoutes");
 const loginRoutes_1 = require("./routes/loginRoutes");
-require("dotenv").config();
-const express = require("express"); // Para criar o servidor
-const pug = require("pug"); // Para renderizar as páginas
-const axios = require("axios"); // Para fazer requisições à API
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const express = require("express");
 const path = require("path");
 const app = express();
-const port = process.env.PORT || 5999;
-const apiURL = process.env.APIURL || "http://localhost:3001";
+const port = process.env.PORT || 6969;
 // Pug Setup
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "../views"));

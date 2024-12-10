@@ -1,0 +1,32 @@
+doctype html 
+html 
+    head 
+        //- Bloco Head Extra
+        block headExtra 
+
+        //- Sobrescrever CSS
+        link(rel="stylesheet", href="/public/styles.css")
+
+        //- Adicionando uma imagem de título
+        .appHeader
+            img(src="/public/assets/patroArcadeLogo.png", alt="PatroArcade Logo")
+    
+    body
+        .stars
+
+        //- Bloco de Conteúdo 
+        block content 
+
+        //- Um rodapé
+        footer 
+            p © 2024 - PatroArcade - Todos os direitos reservados.
+            <a href="https://github.com/luisfpatrocinio">GitHub</a>
+            <a href="https://www.textstudio.com/">Font generator</a>
+            
+        //- Adicionar algum script adicional
+        block scripts 
+            
+            //- // Scripts comum a todas as páginas
+            //- script(src="/scripts/main.js")
+        
+        
