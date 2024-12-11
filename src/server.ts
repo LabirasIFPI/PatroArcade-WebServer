@@ -1,3 +1,4 @@
+import { gameRoutes } from "./routes/gameRoutes";
 import { homeRoutes } from "./routes/homeRoutes";
 import { loginRoutes } from "./routes/loginRoutes";
 import dotenv from "dotenv";
@@ -18,6 +19,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 // Home Page Route
 app.use("/", homeRoutes);
 app.use("/login", loginRoutes);
+app.use("/game", gameRoutes);
 
 app.listen(port, () => {
   console.clear();
