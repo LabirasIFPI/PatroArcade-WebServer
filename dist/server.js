@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const gameRoutes_1 = require("./routes/gameRoutes");
 const homeRoutes_1 = require("./routes/homeRoutes");
 const loginRoutes_1 = require("./routes/loginRoutes");
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -18,6 +19,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 // Home Page Route
 app.use("/", homeRoutes_1.homeRoutes);
 app.use("/login", loginRoutes_1.loginRoutes);
+app.use("/game", gameRoutes_1.gameRoutes);
 app.listen(port, () => {
     console.clear();
     console.log(`PatroPage Server on port: ${port}`);
