@@ -6,4 +6,36 @@ block headExtra
     title Perfil de Usuário
 
 block content 
-    
+    h1 Perfil de #{playerData.content.name}
+
+    div
+        p
+            strong Nível: 
+            | #{playerData.content.rankLevel}
+        p
+            strong Pontos de Experiência: 
+            | #{playerData.content.expPoints}
+        p
+            strong Biografia: 
+            | #{playerData.content.bio}
+        p
+            strong Inimigos Destruídos: 
+            | #{playerData.content.enemiesDestroyed}
+        p
+            strong Pontuação Total: 
+            | #{playerData.content.totalScore}
+        p
+            strong Maior Pontuação: 
+            | #{playerData.content.highestScore}
+        p
+            strong Moedas Coletadas: 
+            | #{playerData.content.coinsCollected}
+        p
+            strong Índice do Avatar: 
+            | #{playerData.content.avatarIndex}
+        p
+            strong Índice de Cor: 
+            | #{playerData.content.colorIndex}
+        p
+            strong ID do Usuário: 
+            | #{playerData.content.userId}
