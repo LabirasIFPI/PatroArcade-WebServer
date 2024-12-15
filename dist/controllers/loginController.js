@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginPage = void 0;
-const apiURL = process.env.APIURL || "http://localhost:3001";
 function loginPage(req, res) {
     try {
         console.log("Carregando a página de login...");

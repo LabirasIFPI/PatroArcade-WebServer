@@ -6,36 +6,36 @@ block headExtra
     title Perfil de Usuário
 
 block content 
-    h1 Perfil de #{playerData.content.name}
+    div#playerInfo
+        section#Profile
+            h1 #{playerData.name}
 
+            div
+                h3 #{playerData.bio}
+                p
+                    strong Nível: 
+                    | #{playerData.level}
+                p
+                    strong Pontos de Experiência: 
+                    | #{playerData.expPoints}
+
+        section#RecentGames
+            h2 Jogos Jogados 
+            //- Lista os 5 últimos jogos jogados:
+            each save in playerData.saveDatas.sort((a, b) => new Date(b.lastPlayed) - new Date(a.lastPlayed)).slice(0,5)
+                //- Pegar a informação do jogo a partir do gameId do save.
+                - const gameInfo = gameInfos.find(game => game.id === save.gameId);
+                if gameInfo 
+                    .GameInfo
+                        h3= gameInfo.title 
+                        p 
+                            strong Última vez jogado: 
+                            | #{new Date(save.lastPlayed).toLocaleDateString()}
+                        ul 
+                            each value, key in save.data
+                                li 
+                                    strong= gameInfo.dataLabels[key] + ': '
+                                    span= value
+    
     div
-        p
-            strong Nível: 
-            | #{playerData.content.rankLevel}
-        p
-            strong Pontos de Experiência: 
-            | #{playerData.content.expPoints}
-        p
-            strong Biografia: 
-            | #{playerData.content.bio}
-        p
-            strong Inimigos Destruídos: 
-            | #{playerData.content.enemiesDestroyed}
-        p
-            strong Pontuação Total: 
-            | #{playerData.content.totalScore}
-        p
-            strong Maior Pontuação: 
-            | #{playerData.content.highestScore}
-        p
-            strong Moedas Coletadas: 
-            | #{playerData.content.coinsCollected}
-        p
-            strong Índice do Avatar: 
-            | #{playerData.content.avatarIndex}
-        p
-            strong Índice de Cor: 
-            | #{playerData.content.colorIndex}
-        p
-            strong ID do Usuário: 
-            | #{playerData.content.userId}
+        a(href="/") Voltar

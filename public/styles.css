@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: radial-gradient(ellipse at bottom, #0d1b2a, #000000);
+    background: radial-gradient(ellipse at bottom, #0d1b2a, #000000) fixed;
     color: #ffffff;
     overflow-x: hidden;
   }
@@ -16,7 +16,17 @@ body {
     height: 100%;
     z-index: -1;
     opacity: 0.7;
+    animation: moveStars 100s linear infinite; /* Define a animação das estrelas */
   }
+
+  @keyframes moveStars {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -2000px 0; /* Move as estrelas para a esquerda */
+    }
+}
   
   /* Header do app */
   .appHeader {
@@ -41,11 +51,51 @@ body {
   }
   
   /* Títulos */
+  section h1 {
+    text-align: center;
+    color: #1f6feb;
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
   section h2 {
     text-align: center;
     color: #1f6feb;
     font-size: 1.5rem;
     margin-bottom: 15px;
+  }
+
+  section h3 {
+    text-align: center;
+    color: #1f6feb;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  /* Específicos */
+    #playerInfo {
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+  .GameInfo {
+    text-align: left;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .GameInfo h3 {
+    text-align: left;
+    color: #fafa03;
+    font-size: 1rem;
+    margin-bottom: 0px;
+    margin: 0%;
+  }
+
+  .GameInfo p {
+    margin: 0;
   }
   
   /* Labels e inputs */
