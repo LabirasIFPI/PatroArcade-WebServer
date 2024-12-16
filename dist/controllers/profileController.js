@@ -19,15 +19,16 @@ function profilePage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log("Carregando a página de perfil...");
-            // Obter dados do jogador:
+            // Obter dados do jogador: (playerData)
             const { data: { content: playerData }, } = yield axios_1.default.get(apiURL + "/player/" + req.params.playerId);
-            // Obter IDs dos jogos jogados:
-            const gameIds = playerData.saveDatas.map((save) => save.gameId);
-            // Obter informações dos jogos jogados:
-            const gameInfoPromises = gameIds.map((gameId) => axios_1.default.get(`${apiURL}/game/${gameId}`));
-            const gameInfosResponses = yield Promise.all(gameInfoPromises);
-            const gameInfos = gameInfosResponses.map((response) => response.data.content);
-            res.render("profile", { playerData, gameInfos });
+            // Obter jogos que o player jogou: (saves)
+            const { data: { content: saves }, } = yield axios_1.default.get(apiURL + "/player/" + req.params.playerId + "/saves");
+            // Obter informações dos jogos:
+            const gameInfos = yield Promise.all(saves.map((save) => __awaiter(this, void 0, void 0, function* () {
+                const { data: { content: gameInfo }, } = yield axios_1.default.get(apiURL + "/game/" + save.gameId);
+                return gameInfo;
+            })));
+            res.render("profile", { playerData, gameInfos, saves });
         }
         catch (_err) {
             console.error(_err);

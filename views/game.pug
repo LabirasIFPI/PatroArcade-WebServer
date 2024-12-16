@@ -4,13 +4,14 @@ block headExtra
     title Jogo: #{game.title}
 
 block content 
-    .gameContainer
-        .gameInfo
+    section
+        .GameInfo
             h1= game.title
             p= game.description
             //- img(src=`/public/assets/${game.image}`, alt=game.title)
             p= game.genre 
-            ul
-                each tag in game.tags
-                    li= tag
-        a(href='/') Voltar
+            p Tags: 
+                each tag, i in game.tags
+                    | #{tag}#{i < game.tags.length - 1 ? ' - ' : ''}
+            
+            button(onclick="window.history.back()") Voltar

@@ -82,8 +82,12 @@ body {
 
   .GameInfo {
     text-align: left;
+    justify-content: center;
     width: 90%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .GameInfo h3 {
@@ -96,7 +100,22 @@ body {
 
   .GameInfo p {
     margin: 0;
+    text-align: center;
   }
+
+  .GameInfo button {
+    background-color: #4400ff; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 50%;
+}
   
   /* Labels e inputs */
   form label {

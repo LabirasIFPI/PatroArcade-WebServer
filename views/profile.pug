@@ -1,4 +1,4 @@
-//- Mostrar 
+//- Essa página vai ser carregada com playerData, gameInfos e saves
 
 extends base.pug
 
@@ -21,21 +21,14 @@ block content
 
         section#RecentGames
             h2 Jogos Jogados 
-            //- Lista os 5 últimos jogos jogados:
-            each save in playerData.saveDatas.sort((a, b) => new Date(b.lastPlayed) - new Date(a.lastPlayed)).slice(0,5)
-                //- Pegar a informação do jogo a partir do gameId do save.
-                - const gameInfo = gameInfos.find(game => game.id === save.gameId);
-                if gameInfo 
-                    .GameInfo
-                        h3= gameInfo.title 
-                        p 
-                            strong Última vez jogado: 
-                            | #{new Date(save.lastPlayed).toLocaleDateString()}
-                        ul 
+                ul
+                    each save in saves
+                        - var game = gameInfos.find(game => game.id === save.gameId)
+                        h3
+                            a(href=`/game/${save.gameId}`) #{game.title}
                             each value, key in save.data
-                                li 
-                                    strong= gameInfo.dataLabels[key] + ': '
-                                    span= value
+                                li
+                                    strong #{game.dataLabels[key]}: #{value}
     
     div
         a(href="/") Voltar
