@@ -14,11 +14,18 @@ block content
             h3= news.title
             p= news.content
     section#pontuacoes
-        h2 Melhores Colocações 
-        ul
-            each player in players
-                li 
-                    p #{player.name} - #{player.totalScore}
+        h2 Melhores Colocações
+        table
+            thead
+                tr
+                    th Nome
+                    th Pontuação Total
+            tbody
+                each player in players
+                    tr
+                        td 
+                            a(href=`/profile/${player.userId}`).player-link= player.name
+                        td #{player.totalScore}
     section#links-uteis
     //-   h2 Acesso Rápido
     //-   ul

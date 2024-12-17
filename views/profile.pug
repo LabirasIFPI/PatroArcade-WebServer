@@ -16,19 +16,28 @@ block content
                     strong Nível: 
                     | #{playerData.level}
                 p
-                    strong Pontos de Experiência: 
-                    | #{playerData.expPoints}
+                    div.progress
+                        div.progress-bar(style=`width: ${playerData.expPoints / 100 * 50}%`)
+                            | #{playerData.expPoints} / #{100} XP
 
         section#RecentGames
             h2 Jogos Jogados 
                 ul
+                    - if (saves.length === 0)
+                        li Não há jogos salvos.
+                    - else
                     each save in saves
                         - var game = gameInfos.find(game => game.id === save.gameId)
                         h3
-                            a(href=`/game/${save.gameId}`) #{game.title}
-                            each value, key in save.data
-                                li
-                                    strong #{game.dataLabels[key]}: #{value}
+                            a.gameName(href=`/game/${save.gameId}`) #{game.title}
+                            table
+                                each value, key in save.data
+                                    
+                                    tr
+                                        td #{game.dataLabels[key]}
+                                        td #{value}
+                                    //- li
+                                    //-     strong #{game.dataLabels[key]}: #{value}
     
-    div
-        a(href="/") Voltar
+    div.returnButton
+        a(onclick="window.location.href='/'") Voltar

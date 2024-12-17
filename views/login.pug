@@ -6,29 +6,39 @@ block headExtra
 block content
     section#login
         h2 Login no Fliperama ID: #{arcadeId}
-        form(action="/login", method="POST")
+        //- - var apiUrl = "http://localhost:3001"
+        - var apiUrl  = "https://patroarcadeserver.onrender.com"
+        form(action=`${apiUrl}/login/${arcadeId}`, method="POST")
             label(for="username") Usuário
             input(type="text", name="username", id="username")
             label(for="password") Senha
             input(type="password", name="password", id="password")
             button(type="submit") Entrar
-    section#cadastro
-        h2 Cadastro
-        form(action="/cadastro", method="POST")
-            label(for="username") Usuário
-            input(type="text", name="username", id="username")
-            label(for="password") Senha
-            input(type="password", name="password", id="password")
-            button(type="submit") Cadastrar
-    section#links-uteis
-        h2 Links Úteis
-        ul
-            li 
-                a(href='/perfil') Perfil
-            li 
-                a(href='/ranking') Ranking
-            li 
-                a(href='/') Início
-    //- section#erros
-    //-     if error
-    //-         p= error
+
+block scripts 
+    script.
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.querySelector('#username').value;
+            const password = document.querySelector('#password').value;
+            
+            fetch(this.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.type === 'loginSuccess') {
+                    window.location.href = '/profile/' + data.content.userId;
+                } else {
+                    alert('Login failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });

@@ -5,6 +5,9 @@ body {
     background: radial-gradient(ellipse at bottom, #0d1b2a, #000000) fixed;
     color: #ffffff;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .stars {
@@ -85,6 +88,67 @@ body {
     margin-bottom: 15px;
   }
 
+  /* Estilização da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #1f6feb;
+    color: white;
+}
+
+th, td {
+    border: 0px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #1f6feb;
+    color: white;
+    font-weight: bold;
+}
+
+tr a {
+    color: #1f6feb;
+    text-decoration: none;
+}
+
+tr:nth-child(even) {
+    background-color: #000000;
+}
+
+tr:hover {
+    background-color: #242424;
+}
+
+/* Barra de experiência */
+.progress {
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    background-color: #1f6feb;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    white-space: nowrap;
+    transition: width 0.6s ease;
+}
+
+.gameName {
+    color: #1f6feb;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
 
   /* Específicos */
     #playerInfo {
@@ -141,13 +205,12 @@ body {
   
   form input {
     width: 100%;
-    padding: 10px;
     margin-bottom: 15px;
     border: 2px solid #1f6feb;
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
   }
   
   form input:focus {
@@ -195,6 +258,7 @@ body {
   #links-uteis a:hover {
     color: #39d353;
   }
+
   
   /* Rodapé */
   footer {
@@ -224,3 +288,24 @@ body {
     }
   }
   
+
+.returnButton {
+    background-color: #1f6feb;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.returnButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #1f6feb;
+}
+
