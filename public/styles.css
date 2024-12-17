@@ -50,6 +50,19 @@ body {
     box-shadow: 0 0 15px #1f6feb;
   }
   
+  section ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  section li p {
+    text-indent: 2rem;
+  }
+
+  section#latestNews {
+    text-align: justify;
+  }
+  
   /* Títulos */
   section h1 {
     text-align: center;
@@ -71,6 +84,7 @@ body {
     font-size: 1.2rem;
     margin-bottom: 15px;
   }
+
 
   /* Específicos */
     #playerInfo {

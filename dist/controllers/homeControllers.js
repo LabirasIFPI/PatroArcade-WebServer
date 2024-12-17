@@ -23,8 +23,18 @@ function homePage(req, res) {
             console.log("Carregando a página inicial...");
             console.log("API URL:", apiURL);
             const { data: { content: latestNews }, } = yield axios_1.default.get(apiURL + "/latestNews");
-            const { data: { content: leaderboards }, } = yield axios_1.default.get(apiURL + "/leaderboard");
-            res.render("home", { latestNews, leaderboards });
+            // Obter Jogos
+            const { data: { content: games }, } = yield axios_1.default.get(apiURL + "/game");
+            // Obter Maiores Pontuações
+            const { data: { content: players }, } = yield axios_1.default.get(apiURL + "/player");
+            players.sort((a, b) => b.totalScore - a.totalScore);
+            // // Obter saves
+            // const {
+            //   data: { content: saves },
+            // } = await axios.get(apiURL + "/saves");
+            // // Obter apenas os últimos saves:
+            // saves.sort((a: any, b: any) => b.lastPlayed - a.lastPlayed);
+            res.render("home", { latestNews, games, players });
         }
         catch (_err) {
             // if (_err instanceof Error) console.error(_err.message);

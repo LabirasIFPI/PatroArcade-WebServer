@@ -1,10 +1,12 @@
+//- A página está sendo iniciada com latestNews, games, players
+
 extends base.pug
 
 block headExtra
     title Página Inicial
 
 block content 
-    section#novidades
+    section#latestNews
       h2 Novidades
       ul
         each news in latestNews
@@ -12,14 +14,13 @@ block content
             h3= news.title
             p= news.content
     section#pontuacoes
-      h2 Últimas Pontuações
-      ul
-        each entry in leaderboards
-          li #{entry.name}: #{entry.totalScore} pontos
+        h2 Melhores Colocações 
+        ul
+            each player in players
+                li 
+                    p #{player.name} - #{player.totalScore}
     section#links-uteis
-      h2 Links Úteis
-      ul
-        li 
-          a(href='/perfil') Perfil
-        li 
-          a(href='/ranking') Ranking
+    //-   h2 Acesso Rápido
+    //-   ul
+    //-     li 
+    //-       a(href='/perfil') Perfil
