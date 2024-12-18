@@ -16,6 +16,7 @@ export async function playerPage(req: Request, res: Response) {
     const {
       data: { content: saves },
     } = await axios.get(apiURL + "/player/" + req.params.playerId + "/saves");
+    saves.sort((a: any, b: any) => b.lastPlayed - a.lastPlayed);
 
     // Obter informações dos jogos:
     const gameInfos = await Promise.all(

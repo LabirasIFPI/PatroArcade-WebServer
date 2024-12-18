@@ -14,11 +14,24 @@ block content
                 h3 #{playerData.bio}
                 p
                     strong Nível: 
-                    | #{playerData.level}
+                    | #{playerData.level} • #{playerData.expPoints} / #{100} XP
                 p
                     div.progress
-                        div.progress-bar(style=`width: ${playerData.expPoints / 100 * 50}%`)
-                            | #{playerData.expPoints} / #{100} XP
+                        div.progress-bar(style=`width: ${playerData.expPoints / 100 * 100}%`)
+                    
+                - if (saves.length > 0)
+                    p Visto por último: 
+                        - var lastPlayedDate = new Date(saves[0].lastPlayed)
+                        - var hoursAgo = Math.floor((new Date() - lastPlayedDate) / 36e5)
+                        - var timeAgo = hoursAgo < 24 ? `há ${hoursAgo} horas` : `há ${Math.floor(hoursAgo / 24)} dias`
+                        | #{timeAgo}    
+                        - if (saves.length > 0)
+                            - var recentGame = gameInfos.find(game => game.id === saves[0].gameId)
+                            p #{recentGame.title}
+                            p #{saves[0].richPresenceText}
+                - else 
+                    p Não há jogos jogados.
+                    
 
         section#RecentGames
             h2 Jogos Jogados 

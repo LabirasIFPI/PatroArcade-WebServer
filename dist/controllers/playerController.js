@@ -23,6 +23,7 @@ function playerPage(req, res) {
             const { data: { content: playerData }, } = yield axios_1.default.get(apiURL + "/player/" + req.params.playerId);
             // Obter jogos que o player jogou: (saves)
             const { data: { content: saves }, } = yield axios_1.default.get(apiURL + "/player/" + req.params.playerId + "/saves");
+            saves.sort((a, b) => b.lastPlayed - a.lastPlayed);
             // Obter informações dos jogos:
             const gameInfos = yield Promise.all(saves.map((save) => __awaiter(this, void 0, void 0, function* () {
                 const { data: { content: gameInfo }, } = yield axios_1.default.get(apiURL + "/game/" + save.gameId);
