@@ -28,7 +28,7 @@ function playerPage(req, res) {
                 const { data: { content: gameInfo }, } = yield axios_1.default.get(apiURL + "/game/" + save.gameId);
                 return gameInfo;
             })));
-            res.render("profile", { playerData, gameInfos, saves });
+            res.render("player", { playerData, gameInfos, saves });
         }
         catch (_err) {
             console.error(_err);

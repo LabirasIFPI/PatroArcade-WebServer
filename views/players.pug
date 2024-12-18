@@ -1,0 +1,17 @@
+//- Essa página vai ser carregada com playerDatabase
+
+extends base.pug
+
+block headExtra 
+    title Listagem de Jogadores 
+
+block content 
+    section
+        h2 Jogadores
+            ul
+                each player in playerDatabase
+                    #gameListItem
+                        li 
+                            a(href=`/player/${player.userId}`)= player.name
+    div.returnButton
+        a(onclick="window.location.href='/'") Voltar    

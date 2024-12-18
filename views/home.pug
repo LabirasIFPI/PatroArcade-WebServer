@@ -24,10 +24,16 @@ block content
                 each player in players
                     tr
                         td 
-                            a(href=`/profile/${player.userId}`).player-link= player.name
+                            a(href=`/player/${player.userId}`).player-link= player.name
                         td #{player.totalScore}
     section#links-uteis
-    //-   h2 Acesso Rápido
-    //-   ul
-    //-     li 
-    //-       a(href='/perfil') Perfil
+      h2 Links Úteis
+      ul
+        li 
+          a(href='/games') Jogos
+        li
+          a(href='/players') Jogadores
+        li
+            a Fórum
+        //-   a(href='/forum') Fórum
+            

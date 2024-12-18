@@ -12,28 +12,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.playerPage = void 0;
+exports.gamesPage = void 0;
 const axios_1 = __importDefault(require("axios"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const apiURL = process.env.APIURL || "http://localhost:3001";
-function playerPage(req, res) {
+function gamesPage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            console.log("Carregando a página de perfil...");
-            // Obter dados do jogador: (playerData)
-            const { data: { content: playerData }, } = yield axios_1.default.get(apiURL + "/player/" + req.params.playerId);
-            // Obter jogos que o player jogou: (saves)
-            const { data: { content: saves }, } = yield axios_1.default.get(apiURL + "/player/" + req.params.playerId + "/saves");
-            // Obter informações dos jogos:
-            const gameInfos = yield Promise.all(saves.map((save) => __awaiter(this, void 0, void 0, function* () {
-                const { data: { content: gameInfo }, } = yield axios_1.default.get(apiURL + "/game/" + save.gameId);
-                return gameInfo;
-            })));
-            res.render("profile", { playerData, gameInfos, saves });
+            console.log("Carregando a página dos jogos...");
+            // Solicitar apenas os jogos necessários para a página atual
+            const { data: { content: gameDatabase }, } = yield axios_1.default.get(`${apiURL}/games`);
+            res.render("games", { gameDatabase });
         }
         catch (_err) {
             console.error(_err);
-            res.status(500).send("Erro ao carregar a página de perfil.");
+            res.status(500).send("Erro ao carregar a página do jogo.");
         }
     });
 }
-exports.playerPage = playerPage;
+exports.gamesPage = gamesPage;

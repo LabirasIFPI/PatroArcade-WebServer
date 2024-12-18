@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 const apiURL = process.env.APIURL || "http://localhost:3001";
 
-export async function profilePage(req: Request, res: Response) {
+export async function playerPage(req: Request, res: Response) {
   try {
     console.log("Carregando a página de perfil...");
 
@@ -27,7 +27,7 @@ export async function profilePage(req: Request, res: Response) {
       })
     );
 
-    res.render("profile", { playerData, gameInfos, saves });
+    res.render("player", { playerData, gameInfos, saves });
   } catch (_err) {
     console.error(_err);
     res.status(500).send("Erro ao carregar a página de perfil.");

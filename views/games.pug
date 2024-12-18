@@ -1,0 +1,17 @@
+//- Essa página vai iniciar com um array de jogos gameDatabase
+
+extends base.pug
+
+block headExtra 
+    title Listagem de Jogos 
+
+block content 
+    section
+        h2 Jogos
+            ul
+                each game in gameDatabase
+                    #gameListItem
+                        li 
+                            a(href=`/game/${game.id}`).game-link= game.title
+    div.returnButton
+        a(onclick="window.location.href='/'") Voltar
