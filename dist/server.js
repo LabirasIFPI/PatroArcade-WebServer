@@ -12,6 +12,7 @@ const playerRoutes_1 = require("./routes/playerRoutes");
 const playersRoutes_1 = require("./routes/playersRoutes");
 // Import dotenv
 const dotenv_1 = __importDefault(require("dotenv"));
+const registerRoutes_1 = require("./routes/registerRoutes");
 dotenv_1.default.config();
 // Express
 const express = require("express");
@@ -29,6 +30,7 @@ app.use("/game", gameRoutes_1.gameRoutes);
 app.use("/games", gamesRoutes_1.gamesRoutes);
 app.use("/player", playerRoutes_1.playerRoutes);
 app.use("/players", playersRoutes_1.playersRoutes);
+app.use("/register", registerRoutes_1.registerRoutes);
 app.listen(port, () => {
     console.clear();
     console.log(`PatroPage Server on port: ${port}`);

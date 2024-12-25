@@ -1,0 +1,20 @@
+//- Página de erro, renderizada com message
+
+extends base.pug
+
+block headExtra
+    title Erro
+
+block content
+    section
+        h2 Erro no Sistema
+        div(style="margin-top: 20px; display: flex; justify-content: center; flex-direction: column; align-items: center;")
+            p= message
+            a(href="javascript:void(0);" onclick="goHome()")
+                button(type="button" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;") Voltar para a página inicial
+
+block scripts
+    script.
+        function goHome() {
+            window.location.href = "/";
+        }

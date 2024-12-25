@@ -1,28 +1,37 @@
+//- A página carrega com arcadeData
+
 extends base.pug
 
 block headExtra 
     title Login
 
 block content
-    section#login
-        h2 Login no Fliperama ID: #{arcadeId}
-        //- - var apiUrl = "http://localhost:3001"
-        - var apiUrl  = "https://patroarcadeserver.onrender.com"
-        form(action=`${apiUrl}/login/${arcadeId}`, method="POST")
+    section
+        h2 Login no Fliperama
+        form(id="loginForm")
             label(for="username") Usuário
             input(type="text", name="username", id="username")
             label(for="password") Senha
             input(type="password", name="password", id="password")
-            button(type="submit") Entrar
+            div(style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;")
+                a(href="/forgot-password", style="margin-left: auto;") Esqueci minha senha
+            div(style="display: flex; gap: 10px; flex-direction: column;")
+                button(type="button", id="submitButton") Entrar
+                - const arcadeId = arcadeData.id;
+                a(href=`/register/${arcadeId}`) 
+                    button(type="button") Registrar
 
 block scripts 
     script.
-        document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
+        document.querySelector('#submitButton').addEventListener('click', function() {
             const username = document.querySelector('#username').value;
             const password = document.querySelector('#password').value;
-            
-            fetch(this.action, {
+            const apiURL = "#{apiURL}"
+            console.log('apiURL', apiURL);
+
+            const arcadeId = "#{arcadeData.id}";
+
+            fetch(`${apiURL}/login/${arcadeId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -34,7 +43,8 @@ block scripts
                 if (data.type === 'loginSuccess') {
                     window.location.href = '/profile/' + data.content.userId;
                 } else {
-                    alert('Login failed: ' + data.message);
+                    // TODO: Redirecionar para página de erro
+                    alert('Falha ao logar: ' + data.content);
                 }
             })
             .catch(error => {

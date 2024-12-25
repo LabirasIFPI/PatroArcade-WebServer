@@ -8,6 +8,7 @@ import { playersRoutes } from "./routes/playersRoutes";
 
 // Import dotenv
 import dotenv from "dotenv";
+import { registerRoutes } from "./routes/registerRoutes";
 dotenv.config();
 
 // Express
@@ -29,6 +30,7 @@ app.use("/game", gameRoutes);
 app.use("/games", gamesRoutes);
 app.use("/player", playerRoutes);
 app.use("/players", playersRoutes);
+app.use("/register", registerRoutes);
 
 app.listen(port, () => {
   console.clear();
