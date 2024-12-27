@@ -41,7 +41,7 @@ block scripts
             .then(response => response.json())
             .then(data => {
                 if (data.type === 'loginSuccess') {
-                    window.location.href = '/profile/' + data.content.userId;
+                    window.location.href = '/player/' + data.content.id;
                 } else {
                     // TODO: Redirecionar para página de erro
                     alert('Falha ao logar: ' + data.content);
