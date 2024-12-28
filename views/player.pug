@@ -22,8 +22,10 @@ block content
                 - if (saves.length > 0)
                     p Visto por último: 
                         - var lastPlayedDate = new Date(saves[0].lastPlayed)
-                        - var hoursAgo = Math.floor((new Date() - lastPlayedDate) / 36e5)
-                        - var timeAgo = hoursAgo < 24 ? `há ${hoursAgo} horas` : `há ${Math.floor(hoursAgo / 24)} dias`
+                        - var timeDifference = new Date() - lastPlayedDate
+                        - var hoursAgo = Math.floor(timeDifference / 36e5)
+                        - var minutesAgo = Math.floor(timeDifference / 6e4)
+                        - var timeAgo = hoursAgo >= 1 ? (hoursAgo < 24 ? `há ${hoursAgo} horas` : `há ${Math.floor(hoursAgo / 24)} dias`) : `há ${minutesAgo} minutos`
                         | #{timeAgo}    
                         - if (saves.length > 0)
                             - var recentGame = gameInfos.find(game => game.id === saves[0].gameId)
