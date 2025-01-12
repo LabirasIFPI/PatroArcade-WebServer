@@ -12,22 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginPage = void 0;
+exports.arcadeFirstLoginPage = void 0;
 const axios_1 = __importDefault(require("axios"));
 const apiURL = process.env.APIURL || "http://localhost:3001";
-function loginPage(req, res) {
+function arcadeFirstLoginPage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            console.log("Carregando a página de login...");
-            const arcadeInfo = yield axios_1.default.get(apiURL + "/arcade/" + req.params.arcadeId);
+            console.log("Página de Login de Administrador de Arcade");
+            const arcadeTempId = req.params.arcadeTempId;
             res.render("login", {
-                arcadeData: arcadeInfo.data.content,
-                arcadeTempId: undefined,
+                arcadeData: undefined,
+                tempId: arcadeTempId,
                 apiURL: apiURL,
             });
         }
         catch (error) {
-            // Verifica se o erro possui uma resposta da API
             if (axios_1.default.isAxiosError(error) && error.response) {
                 // Captura o código de status e a mensagem de erro
                 const statusCode = error.response.status; // Ex: 404
@@ -47,4 +46,4 @@ function loginPage(req, res) {
         }
     });
 }
-exports.loginPage = loginPage;
+exports.arcadeFirstLoginPage = arcadeFirstLoginPage;

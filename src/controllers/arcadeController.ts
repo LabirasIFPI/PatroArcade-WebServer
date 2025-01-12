@@ -3,21 +3,18 @@ import { Request, Response } from "express";
 
 const apiURL = process.env.APIURL || "http://localhost:3001";
 
-export async function loginPage(req: Request, res: Response) {
+export async function arcadeFirstLoginPage(req: Request, res: Response) {
   try {
-    console.log("Carregando a página de login...");
+    console.log("Página de Login de Administrador de Arcade");
 
-    const arcadeInfo = await axios.get(
-      apiURL + "/arcade/" + req.params.arcadeId
-    );
+    const arcadeTempId = req.params.arcadeTempId;
 
     res.render("login", {
-      arcadeData: arcadeInfo.data.content,
-      arcadeTempId: undefined,
+      arcadeData: undefined,
+      tempId: arcadeTempId,
       apiURL: apiURL,
     });
   } catch (error) {
-    // Verifica se o erro possui uma resposta da API
     if (axios.isAxiosError(error) && error.response) {
       // Captura o código de status e a mensagem de erro
       const statusCode = error.response.status; // Ex: 404

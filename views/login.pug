@@ -1,4 +1,4 @@
-//- A página carrega com arcadeData
+//- A página carrega com arcadeData, e com arcadeTempId
 
 extends base.pug
 
@@ -17,7 +17,7 @@ block content
                 a(href="/forgot-password", style="margin-left: auto;") Esqueci minha senha
             div(style="display: flex; gap: 10px; flex-direction: column;")
                 button(type="button", id="submitButton") Entrar
-                - const arcadeId = arcadeData.id;
+                - const arcadeId = arcadeData.id;   // é importante enviar o arcadeId para podermos voltar depois
                 a(href=`/register/${arcadeId}`) 
                     button(type="button") Registrar
 
@@ -31,6 +31,31 @@ block scripts
 
             const arcadeId = "#{arcadeData.id}";
 
+            // Precisamos conferir.
+            // Se o login tiver arcadeTempId diferente de undefined, é porque estamos tentando cadastrar um fliperama.
+            // Nesse caso, devemos exigir um perfil de administrador, além de uma rota diferente.
+
+            const arcadeTempId = "#{arcadeTempId}";
+            if (arcadeTempId != undefined) {
+                fetch(`${apiURL}/arcadeLogin/${arcadeId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.type === 'loginSuccess') {
+                        window.location.href = '/player/' + data.content.id;
+                    } else {
+                        alert("Falha ao logar: " + data.content);
+                    }
+                })
+                return;
+            }
+
+            // Se chegamos aqui, é porque não estamos tentando cadastrar um fliperama. (arcadeTempId == undefined)
             fetch(`${apiURL}/login/${arcadeId}`, {
                 method: 'POST',
                 headers: {
