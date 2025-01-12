@@ -9,6 +9,7 @@ import { playersRoutes } from "./routes/playersRoutes";
 // Import dotenv
 import dotenv from "dotenv";
 import { registerRoutes } from "./routes/registerRoutes";
+import { arcadeLoginRoutes } from "./routes/arcadeLoginRoutes";
 dotenv.config();
 
 // Express
@@ -26,6 +27,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 // Setup Routes
 app.use("/", homeRoutes);
 app.use("/login", loginRoutes);
+app.use("/arcadeLogin", arcadeLoginRoutes);
 app.use("/game", gameRoutes);
 app.use("/games", gamesRoutes);
 app.use("/player", playerRoutes);

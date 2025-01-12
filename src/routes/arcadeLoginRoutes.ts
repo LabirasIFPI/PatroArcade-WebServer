@@ -5,4 +5,4 @@ const router = Router();
 
 router.get("/:arcadeTempId", arcadeFirstLoginPage);
 
-export { router as loginRoutes };
+export { router as arcadeLoginRoutes };

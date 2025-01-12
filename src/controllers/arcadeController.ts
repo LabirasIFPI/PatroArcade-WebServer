@@ -11,7 +11,7 @@ export async function arcadeFirstLoginPage(req: Request, res: Response) {
 
     res.render("login", {
       arcadeData: undefined,
-      tempId: arcadeTempId,
+      arcadeTempId: arcadeTempId,
       apiURL: apiURL,
     });
   } catch (error) {

@@ -13,6 +13,7 @@ const playersRoutes_1 = require("./routes/playersRoutes");
 // Import dotenv
 const dotenv_1 = __importDefault(require("dotenv"));
 const registerRoutes_1 = require("./routes/registerRoutes");
+const arcadeLoginRoutes_1 = require("./routes/arcadeLoginRoutes");
 dotenv_1.default.config();
 // Express
 const express = require("express");
@@ -26,6 +27,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 // Setup Routes
 app.use("/", homeRoutes_1.homeRoutes);
 app.use("/login", loginRoutes_1.loginRoutes);
+app.use("/arcadeLogin", arcadeLoginRoutes_1.arcadeLoginRoutes);
 app.use("/game", gameRoutes_1.gameRoutes);
 app.use("/games", gamesRoutes_1.gamesRoutes);
 app.use("/player", playerRoutes_1.playerRoutes);

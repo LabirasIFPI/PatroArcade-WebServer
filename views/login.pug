@@ -16,10 +16,13 @@ block content
             div(style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;")
                 a(href="/forgot-password", style="margin-left: auto;") Esqueci minha senha
             div(style="display: flex; gap: 10px; flex-direction: column;")
+                button(type="button", id="adminSubmitButton") Entrar como Admin
                 button(type="button", id="submitButton") Entrar
-                - const arcadeId = arcadeData.id;   // é importante enviar o arcadeId para podermos voltar depois
-                a(href=`/register/${arcadeId}`) 
-                    button(type="button") Registrar
+                - if (typeof arcadeData !== 'undefined') {
+                    - const arcadeId = arcadeData.id;   // é importante enviar o arcadeId para podermos voltar depois
+                    a(href=`/register/${arcadeId}`) 
+                        button(type="button") Registrar
+                - }
 
 block scripts 
     script.
@@ -27,35 +30,16 @@ block scripts
             const username = document.querySelector('#username').value;
             const password = document.querySelector('#password').value;
             const apiURL = "#{apiURL}"
-            console.log('apiURL', apiURL);
 
-            const arcadeId = "#{arcadeData.id}";
-
-            // Precisamos conferir.
-            // Se o login tiver arcadeTempId diferente de undefined, é porque estamos tentando cadastrar um fliperama.
-            // Nesse caso, devemos exigir um perfil de administrador, além de uma rota diferente.
-
-            const arcadeTempId = "#{arcadeTempId}";
-            if (arcadeTempId != undefined) {
-                fetch(`${apiURL}/arcadeLogin/${arcadeId}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.type === 'loginSuccess') {
-                        window.location.href = '/player/' + data.content.id;
-                    } else {
-                        alert("Falha ao logar: " + data.content);
-                    }
-                })
+            const arcadeData = "#{arcadeData}" || null;
+            // Encerrar caso não tenhamos arcadeData
+            if (!arcadeData) {
                 return;
             }
 
-            // Se chegamos aqui, é porque não estamos tentando cadastrar um fliperama. (arcadeTempId == undefined)
+            const arcadeId = "#{arcadeData.id}";
+            console.log("Arcade ID: ", arcadeId);
+
             fetch(`${apiURL}/login/${arcadeId}`, {
                 method: 'POST',
                 headers: {
@@ -77,3 +61,37 @@ block scripts
                 alert('An error occurred. Please try again.');
             });
         });
+
+        document.querySelector('#adminSubmitButton').addEventListener('click', function() {
+            const username = document.querySelector('#username').value;
+            const password = document.querySelector('#password').value;
+            const apiURL = "#{apiURL}"
+
+            const arcadeTempId = "#{arcadeTempId}" || null;
+            console.log("Temp ID: ", arcadeTempId);
+            fetch(`${apiURL}/arcadeLogin/${arcadeTempId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.type === 'loginSuccess') {
+                    window.location.href = '/'; // TODO: Redirecionar para painel de admin.
+                } else {
+                    alert("Falha ao logar: " + data.content);
+                }
+            });
+        });
+
+        const arcadeTempId = "#{arcadeTempId}" || null;
+        if (arcadeTempId) {
+            document.querySelector('#adminSubmitButton').textContent = 'Entrar como Admin: ' + arcadeTempId;
+            document.querySelector('#submitButton').style.display = 'none';
+        }
+
+        if (!arcadeTempId) {
+            document.querySelector('#adminSubmitButton').style.display = 'none';
+        }

@@ -22,7 +22,7 @@ function arcadeFirstLoginPage(req, res) {
             const arcadeTempId = req.params.arcadeTempId;
             res.render("login", {
                 arcadeData: undefined,
-                tempId: arcadeTempId,
+                arcadeTempId: arcadeTempId,
                 apiURL: apiURL,
             });
         }
