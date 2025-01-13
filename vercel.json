@@ -1,13 +1,11 @@
 {
     "version": 2,
-    "builds": {
-        "build": {
-            "command": "npm run build",
-            "environment": {
-                "NODE_ENV": "production"
-            }
-        }
-    },
+    "builds": [ 
+        { 
+            "src": "package.json", 
+            "use": "@vercel/node" 
+        } 
+    ],
     "rewrites": [
         {
             "source": "/(.*)",
