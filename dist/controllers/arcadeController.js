@@ -21,6 +21,7 @@ function arcadeFirstLoginPage(req, res) {
             console.log("Página de Login de Administrador de Arcade");
             const arcadeTempId = req.params.arcadeTempId;
             res.render("login", {
+                arcadeData: undefined,
                 arcadeTempId: arcadeTempId,
                 apiURL: apiURL,
             });
