@@ -1,11 +1,13 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "dist/server.js",
-            "use": "@vercel/node"
+    "builds": {
+        "build": {
+            "command": "npm run build",
+            "environment": {
+                "NODE_ENV": "production"
+            }
         }
-    ],
+    },
     "rewrites": [
         {
             "source": "/(.*)",
