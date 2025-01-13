@@ -18,8 +18,10 @@ const apiURL = process.env.APIURL || "http://localhost:3001";
 function arcadeFirstLoginPage(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            console.log("Página de Login de Administrador de Arcade");
             const arcadeTempId = req.params.arcadeTempId;
+            console.log("Página de Login de Administrador de Arcade");
+            console.log("Arcade Temp ID: " + arcadeTempId);
+            console.log("API URL: " + apiURL);
             res.render("adminLogin", {
                 arcadeTempId: arcadeTempId,
                 apiURL: apiURL,

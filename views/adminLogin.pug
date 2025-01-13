@@ -9,6 +9,9 @@ block content
     section
         h2 Login no Fliperama
         form(id="loginForm")
+            label(for="arcadeTempId") 
+            input(type="hidden", name="arcadeTempId", id="arcadeTempId", value=arcadeTempId)
+            input(type="hidden", name="apiURL", id="apiURL", value=apiURL)
             label(for="username") Usuário
             input(type="text", name="username", id="username")
             label(for="password") Senha
@@ -19,29 +22,4 @@ block content
                 button(type="button", id="adminSubmitButton") Entrar como Admin
 
 block scripts 
-    script.
-        document
-        .querySelector("#adminSubmitButton")
-        .addEventListener("click", function () {
-            const username = document.querySelector("#username").value;
-            const password = document.querySelector("#password").value;
-            const apiURL = "#{apiURL}";
-
-            const arcadeTempId = "#{arcadeTempId}";
-            console.log("Temp ID: ", arcadeTempId);
-            fetch(`${apiURL}/arcadeLogin/${arcadeTempId}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password }),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.type === "loginSuccess") {
-                window.location.href = "/"; // TODO: Redirecionar para painel de admin.
-                } else {
-                alert("Falha ao logar: " + data.content);
-                }
-            });
-        });   
+    script(src="/scripts/adminLogin.js")

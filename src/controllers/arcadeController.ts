@@ -5,9 +5,10 @@ const apiURL = process.env.APIURL || "http://localhost:3001";
 
 export async function arcadeFirstLoginPage(req: Request, res: Response) {
   try {
-    console.log("Página de Login de Administrador de Arcade");
-
     const arcadeTempId = req.params.arcadeTempId;
+    console.log("Página de Login de Administrador de Arcade");
+    console.log("Arcade Temp ID: " + arcadeTempId);
+    console.log("API URL: " + apiURL);
 
     res.render("adminLogin", {
       arcadeTempId: arcadeTempId,

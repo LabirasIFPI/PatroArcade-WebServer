@@ -9,6 +9,8 @@ block content
     section
         h2 Login no Fliperama
         form(id="loginForm")
+            input(type="hidden", name="arcadeId", id="arcadeId", value=arcadeId)
+            input(type="hidden", name="apiURL", id="apiURL", value=apiURL)
             label(for="username") Usuário
             input(type="text", name="username", id="username")
             label(for="password") Senha
@@ -22,34 +24,4 @@ block content
                     button(type="button") Registrar
 
 block scripts 
-    script.
-        // Ao apertar no botão de login, envia os dados para a API
-        document.querySelector("#submitButton").addEventListener("click", function () {
-        const username = document.querySelector("#username").value;
-        const password = document.querySelector("#password").value;
-        const apiURL = "#{apiURL}";
-
-        const arcadeId = "#{arcadeData.id}";
-        console.log("Arcade ID: ", arcadeId);
-
-        fetch(`${apiURL}/login/${arcadeId}`, {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-            if (data.type === "loginSuccess") {
-                window.location.href = "/player/" + data.content.id;
-            } else {
-                // TODO: Redirecionar para página de erro
-                alert("Falha ao logar: " + data.content);
-            }
-            })
-            .catch((error) => {
-            console.error("Error:", error);
-            alert("An error occurred. Please try again.");
-            });
-        });
+    script(src="/scripts/login.js")

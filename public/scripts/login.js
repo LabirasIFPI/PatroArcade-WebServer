@@ -1,15 +1,9 @@
 document.querySelector("#submitButton").addEventListener("click", function () {
   const username = document.querySelector("#username").value;
   const password = document.querySelector("#password").value;
-  const apiURL = "#{apiURL}";
+  const apiURL = document.querySelector("#apiURL").value;
+  const arcadeId = document.querySelector("#arcadeId").value;
 
-  const arcadeData = "#{arcadeData}" || null;
-  // Encerrar caso não tenhamos arcadeData
-  if (!arcadeData) {
-    return;
-  }
-
-  const arcadeId = arcadeData.id;
   console.log("Arcade ID: ", arcadeId);
 
   fetch(`${apiURL}/login/${arcadeId}`, {
@@ -34,38 +28,12 @@ document.querySelector("#submitButton").addEventListener("click", function () {
     });
 });
 
-document
-  .querySelector("#adminSubmitButton")
-  .addEventListener("click", function () {
-    const username = document.querySelector("#username").value;
-    const password = document.querySelector("#password").value;
-    const apiURL = "#{apiURL}";
+// if (arcadeTempId) {
+//   document.querySelector("#adminSubmitButton").textContent =
+//     "Entrar como Admin: " + arcadeTempId;
+//   document.querySelector("#submitButton").style.display = "none";
+// }
 
-    const arcadeTempId = "#{arcadeTempId}" || null;
-    console.log("Temp ID: ", arcadeTempId);
-    fetch(`${apiURL}/arcadeLogin/${arcadeTempId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.type === "loginSuccess") {
-          window.location.href = "/"; // TODO: Redirecionar para painel de admin.
-        } else {
-          alert("Falha ao logar: " + data.content);
-        }
-      });
-  });
-
-if (arcadeTempId) {
-  document.querySelector("#adminSubmitButton").textContent =
-    "Entrar como Admin: " + arcadeTempId;
-  document.querySelector("#submitButton").style.display = "none";
-}
-
-if (!arcadeTempId) {
-  document.querySelector("#adminSubmitButton").style.display = "none";
-}
+// if (!arcadeTempId) {
+//   document.querySelector("#adminSubmitButton").style.display = "none";
+// }
