@@ -25,4 +25,7 @@ block content
                 - }
 
 block scripts 
-    script(src="public/scripts/login.js")
+    script.
+        const apiURL = "#{apiURL}";
+        const arcadeTempId = "#{arcadeTempId}";
+    script(src="/scripts/login.js")

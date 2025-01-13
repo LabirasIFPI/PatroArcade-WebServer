@@ -11,7 +11,7 @@ body {
   }
   
   .stars {
-    background: url('/public/assets/stars.png') repeat;
+    background: url('/assets/stars.png') repeat;
     position: absolute;
     top: 0;
     left: 0;
