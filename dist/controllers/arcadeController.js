@@ -21,12 +21,12 @@ function arcadeFirstLoginPage(req, res) {
             console.log("Página de Login de Administrador de Arcade");
             const arcadeTempId = req.params.arcadeTempId;
             res.render("login", {
-                arcadeData: undefined,
                 arcadeTempId: arcadeTempId,
                 apiURL: apiURL,
             });
         }
         catch (error) {
+            console.log("Erro!");
             if (axios_1.default.isAxiosError(error) && error.response) {
                 // Captura o código de status e a mensagem de erro
                 const statusCode = error.response.status; // Ex: 404
