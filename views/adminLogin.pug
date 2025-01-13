@@ -1,0 +1,47 @@
+//- A página carrega com arcadeTempId
+
+extends base.pug
+
+block headExtra 
+    title Login
+
+block content
+    section
+        h2 Login no Fliperama
+        form(id="loginForm")
+            label(for="username") Usuário
+            input(type="text", name="username", id="username")
+            label(for="password") Senha
+            input(type="password", name="password", id="password")
+            div(style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;")
+                a(href="/forgot-password", style="margin-left: auto;") Esqueci minha senha
+            div(style="display: flex; gap: 10px; flex-direction: column;")
+                button(type="button", id="adminSubmitButton") Entrar como Admin
+
+block scripts 
+    script.
+        document
+        .querySelector("#adminSubmitButton")
+        .addEventListener("click", function () {
+            const username = document.querySelector("#username").value;
+            const password = document.querySelector("#password").value;
+            const apiURL = "#{apiURL}";
+
+            const arcadeTempId = "#{arcadeTempId}";
+            console.log("Temp ID: ", arcadeTempId);
+            fetch(`${apiURL}/arcadeLogin/${arcadeTempId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.type === "loginSuccess") {
+                window.location.href = "/"; // TODO: Redirecionar para painel de admin.
+                } else {
+                alert("Falha ao logar: " + data.content);
+                }
+            });
+        });   

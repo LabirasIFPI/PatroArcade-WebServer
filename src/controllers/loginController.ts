@@ -13,7 +13,6 @@ export async function loginPage(req: Request, res: Response) {
 
     res.render("login", {
       arcadeData: arcadeInfo.data.content,
-      arcadeTempId: undefined,
       apiURL: apiURL,
     });
   } catch (error) {

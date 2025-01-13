@@ -9,8 +9,7 @@ export async function arcadeFirstLoginPage(req: Request, res: Response) {
 
     const arcadeTempId = req.params.arcadeTempId;
 
-    res.render("login", {
-      arcadeData: undefined,
+    res.render("adminLogin", {
       arcadeTempId: arcadeTempId,
       apiURL: apiURL,
     });
