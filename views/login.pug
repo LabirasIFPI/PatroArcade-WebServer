@@ -18,11 +18,9 @@ block content
             div(style="display: flex; gap: 10px; flex-direction: column;")
                 button(type="button", id="adminSubmitButton") Entrar como Admin
                 button(type="button", id="submitButton") Entrar
-                - if (typeof arcadeData !== 'undefined') {
-                    - const arcadeId = arcadeData.id;   // é importante enviar o arcadeId para podermos voltar depois
-                    a(href=`/register/${arcadeId}`) 
+                - if arcadeData && arcadeData.id
+                    a(href=`/register/${arcadeData.id}`)
                         button(type="button") Registrar
-                - }
 
 block scripts 
     script.
