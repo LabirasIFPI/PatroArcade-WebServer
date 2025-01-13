@@ -60,14 +60,12 @@ document
       });
   });
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (arcadeTempId) {
-    document.querySelector("#adminSubmitButton").textContent =
-      "Entrar como Admin: " + arcadeTempId;
-    document.querySelector("#submitButton").style.display = "none";
-  }
+if (arcadeTempId) {
+  document.querySelector("#adminSubmitButton").textContent =
+    "Entrar como Admin: " + arcadeTempId;
+  document.querySelector("#submitButton").style.display = "none";
+}
 
-  if (!arcadeTempId) {
-    document.querySelector("#adminSubmitButton").style.display = "none";
-  }
-});
+if (!arcadeTempId) {
+  document.querySelector("#adminSubmitButton").style.display = "none";
+}
