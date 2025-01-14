@@ -25,6 +25,9 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "../views"));
 app.use(express.static(path.join(__dirname, "../public")));
 
+// Middlewares
+app.use(setSecurityHeaders);
+
 // Setup Routes
 app.use("/", homeRoutes);
 app.use("/login", loginRoutes);
@@ -34,9 +37,6 @@ app.use("/games", gamesRoutes);
 app.use("/player", playerRoutes);
 app.use("/players", playersRoutes);
 app.use("/register", registerRoutes);
-
-// Middlewares
-app.use(setSecurityHeaders);
 
 app.listen(port, () => {
   console.clear();
