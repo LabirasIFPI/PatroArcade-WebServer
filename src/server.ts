@@ -10,6 +10,7 @@ import { playersRoutes } from "./routes/playersRoutes";
 import dotenv from "dotenv";
 import { registerRoutes } from "./routes/registerRoutes";
 import { arcadeLoginRoutes } from "./routes/arcadeLoginRoutes";
+import { setSecurityHeaders } from "./middlewares/securityHeaders";
 dotenv.config();
 
 // Express
@@ -33,6 +34,9 @@ app.use("/games", gamesRoutes);
 app.use("/player", playerRoutes);
 app.use("/players", playersRoutes);
 app.use("/register", registerRoutes);
+
+// Middlewares
+app.use(setSecurityHeaders);
 
 app.listen(port, () => {
   console.clear();

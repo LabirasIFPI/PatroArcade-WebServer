@@ -14,6 +14,7 @@ const playersRoutes_1 = require("./routes/playersRoutes");
 const dotenv_1 = __importDefault(require("dotenv"));
 const registerRoutes_1 = require("./routes/registerRoutes");
 const arcadeLoginRoutes_1 = require("./routes/arcadeLoginRoutes");
+const securityHeaders_1 = require("./middlewares/securityHeaders");
 dotenv_1.default.config();
 // Express
 const express = require("express");
@@ -33,6 +34,8 @@ app.use("/games", gamesRoutes_1.gamesRoutes);
 app.use("/player", playerRoutes_1.playerRoutes);
 app.use("/players", playersRoutes_1.playersRoutes);
 app.use("/register", registerRoutes_1.registerRoutes);
+// Middlewares
+app.use(securityHeaders_1.setSecurityHeaders);
 app.listen(port, () => {
     console.clear();
     console.log(`PatroPage Server on port: ${port}`);
