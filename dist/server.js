@@ -25,6 +25,8 @@ const port = process.env.PORT || 6969;
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "../views"));
 app.use(express.static(path.join(__dirname, "../public")));
+// Middlewares
+app.use(securityHeaders_1.setSecurityHeaders);
 // Setup Routes
 app.use("/", homeRoutes_1.homeRoutes);
 app.use("/login", loginRoutes_1.loginRoutes);
@@ -34,8 +36,6 @@ app.use("/games", gamesRoutes_1.gamesRoutes);
 app.use("/player", playerRoutes_1.playerRoutes);
 app.use("/players", playersRoutes_1.playersRoutes);
 app.use("/register", registerRoutes_1.registerRoutes);
-// Middlewares
-app.use(securityHeaders_1.setSecurityHeaders);
 app.listen(port, () => {
     console.clear();
     console.log(`PatroPage Server on port: ${port}`);

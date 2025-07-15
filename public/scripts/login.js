@@ -37,3 +37,5 @@ document.querySelector("#submitButton").addEventListener("click", function () {
 // if (!arcadeTempId) {
 //   document.querySelector("#adminSubmitButton").style.display = "none";
 // }
+
+document.querySelector("#adminSubmitButton").style.display = "none";
