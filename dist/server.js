@@ -14,7 +14,6 @@ const playersRoutes_1 = require("./routes/playersRoutes");
 const dotenv_1 = __importDefault(require("dotenv"));
 const registerRoutes_1 = require("./routes/registerRoutes");
 const arcadeLoginRoutes_1 = require("./routes/arcadeLoginRoutes");
-const securityHeaders_1 = require("./middlewares/securityHeaders");
 dotenv_1.default.config();
 // Express
 const express = require("express");
@@ -26,7 +25,7 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "../views"));
 app.use(express.static(path.join(__dirname, "../public")));
 // Middlewares
-app.use(securityHeaders_1.setSecurityHeaders);
+// app.use(setSecurityHeaders);
 // Setup Routes
 app.use("/", homeRoutes_1.homeRoutes);
 app.use("/login", loginRoutes_1.loginRoutes);

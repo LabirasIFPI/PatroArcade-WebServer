@@ -5,11 +5,12 @@ const setSecurityHeaders = (
   res: Response,
   next: NextFunction
 ) => {
-  console.log("Setting security headers");
-  res.setHeader(
-    "Content-Security-Policy",
-    "connect-src 'self' https://vercel.live https://patroarcadeserver.onrender.com"
-  );
+  //   console.log("Setting security headers");
+  //   res.setHeader(
+  //     "Content-Security-Policy",
+  //     "connect-src 'self' https://vercel.live https://patroarcadeserver.onrender.com"
+  //   );
+  // teste
   next();
 };
 

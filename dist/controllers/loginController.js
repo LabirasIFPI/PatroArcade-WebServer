@@ -22,6 +22,7 @@ function loginPage(req, res) {
             const arcadeInfo = yield axios_1.default.get(apiURL + "/arcade/" + req.params.arcadeId);
             res.render("login", {
                 arcadeData: arcadeInfo.data.content,
+                arcadeId: req.params.arcadeId,
                 apiURL: apiURL,
             });
         }
